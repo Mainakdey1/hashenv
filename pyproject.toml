@@ -14,7 +14,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 
 [project.scripts]
-hashenv = "cli.cli:app"
+hashenv = "hashenv.cli:app"
 
 [build-system]
 requires = ["setuptools>=61.0"]
