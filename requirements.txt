@@ -1,11 +1,26 @@
+annotated-doc==0.0.4
+annotated-types==0.7.0
+certifi==2026.4.22
+charset-normalizer==3.4.7
 click==8.3.3
 colorama==0.4.6
+-e git+https://github.com/Mainakdey1/hashenv.git@28e049d5b3b4354e869095dff3d22bca35fbea6a#egg=hashenv
 idna==3.13
+iniconfig==2.3.0
 markdown-it-py==4.0.0
 mdurl==0.1.2
+packaging==26.2
+pluggy==1.6.0
+pydantic==2.13.4
+pydantic-settings==2.14.1
+pydantic_core==2.46.4
 Pygments==2.20.0
+pytest==9.0.3
+python-dotenv==1.2.2
 requests==2.33.1
 rich==15.0.0
 shellingham==1.5.4
 typer==0.25.1
+typing-inspection==0.4.2
+typing_extensions==4.15.0
 urllib3==2.6.3
