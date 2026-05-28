@@ -1,9 +1,9 @@
 import typer
 
-
 from helpers.get_repo_list import get_repo_list
 from helpers.env_recieve import env_recieve
-
+from helpers.ping_backend_server import ping_backend_server
+from helpers.get_env_from_backend import get_env_from_backend
 app = typer.Typer()
 
 
@@ -15,25 +15,34 @@ def login(token: str):
     print('Logged in!')
 
 @app.command()
-def hello():
-    print('Hello, this cli tool is working!')
-
-@app.command()
 def ping():
     print('status: working!')
 
 
 @app.command()
-def show_repository(all: bool = typer.Option(False, "--all")):
+def show_repository(all: bool = typer.Option(False, "--all"), r: bool = typer.Option(False, "--r")):
     if all:
         res = get_repo_list()
         print(res)
+    elif r:
+        print('Showing repository for --r flag')
     else:
         print('Nothing passed as parameter, returning nothing')
 
 @app.command()
-def install():
-    env_recieve("org-unique")
+def install(r: bool = typer.Option(False, "--r")):
+    if r:
+        print('do something here')
+    else:
+        env_recieve("org-unique")
+
+
+#test commands can and will usually go here
+@app.command()
+def ping_server():
+    ping_backend_server()
+    env_data = get_env_from_backend('backend-api')
+    print(env_data)
 
 
 

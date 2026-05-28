@@ -1,0 +1,1 @@
+1. Response from backend for env vars can be optimized using caching, Redis as vars are key value pairs
