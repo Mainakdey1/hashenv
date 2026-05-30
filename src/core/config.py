@@ -8,6 +8,7 @@ class Settings(BaseSettings):
 
     ENV_STORE: str
     SERVER_URL: str
+    LOCAL_SERVER_URL: str
     DEBUG: bool = False
 
     model_config = SettingsConfigDict(

@@ -1,5 +1,6 @@
 import typer
 
+from services.repository_processing_and_query_service import process_repository_service
 from helpers.get_repo_list import get_repo_list
 from helpers.env_recieve import env_recieve
 from helpers.ping_backend_server import ping_backend_server
@@ -32,7 +33,10 @@ def show_repository(all: bool = typer.Option(False, "--all"), r: bool = typer.Op
 @app.command()
 def install(r: bool = typer.Option(False, "--r")):
     if r:
-        print('do something here')
+        try:
+            process_repository_service()
+        except Exception.__traceback__ as e:
+            print(f"An error occurred: {e}")
     else:
         env_recieve("org-unique")
 
