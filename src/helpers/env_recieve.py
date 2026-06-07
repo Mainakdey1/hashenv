@@ -6,6 +6,5 @@ def env_recieve(env_data: dict):
     with open(".env", "w") as f:
         for key, value in env_data.items():
             f.write(f'{key}="{value}"\n')
-    print("Environment variables have been written to local .env file")
 
     
