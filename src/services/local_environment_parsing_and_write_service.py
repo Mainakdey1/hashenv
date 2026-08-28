@@ -13,8 +13,10 @@ def local_env_parsing_and_write_service(env_data: dict):
         else:
             print("Keeping existing local .env file content. No changes made.")
     else:
-        print("Local .env file is empty, writing environment variables from backend.. ")
+        print("Writing environment variables from backend... ")
         env_recieve(env_data=env_data)
+
+        print("env populated!")
 
 
 
