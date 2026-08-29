@@ -4,7 +4,6 @@ certifi==2026.4.22
 charset-normalizer==3.4.7
 click==8.3.3
 colorama==0.4.6
--e git+https://github.com/Mainakdey1/hashenv.git@28e049d5b3b4354e869095dff3d22bca35fbea6a#egg=hashenv
 idna==3.13
 iniconfig==2.3.0
 markdown-it-py==4.0.0
