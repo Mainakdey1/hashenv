@@ -6,13 +6,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 class Settings(BaseSettings):
 
-    ENV_STORE: str
-    SERVER_URL: str
-    LOCAL_SERVER_URL: str
+    SERVER_URL: str = "https://resign-model-server.onrender.com"
+    LOCAL_SERVER_URL: str = "http://localhost:3000"
     DEBUG: bool = False
 
     model_config = SettingsConfigDict(
-        env_file=BASE_DIR / ".env"
+        env_file=BASE_DIR / ".env",
+        extra="ignore",
     )
 
 settings = Settings()
