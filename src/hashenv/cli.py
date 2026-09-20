@@ -28,6 +28,11 @@ def ping():
     if res:
         ping_backend_server()
     
+#special functions
+@app.command(help="Check how much your boyfriend loves you")
+def love():
+    console.print("[bright_magenta]A lot lolllll, mwahhhhhhh mwahhhhh mwahhhhhh")
+
 
 @app.command(help="Display all your repositories.")
 def show_repository(all: bool = typer.Option(False, "--all"), r: bool = typer.Option(False, "--r")):
