@@ -1,4 +1,4 @@
-from src.core.config import settings
+from core.config import settings
 import requests
 
 
