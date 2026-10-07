@@ -50,7 +50,7 @@ def install(r: bool = typer.Option(False, "--r")):
             except Exception.__traceback__ as e:
                 print(f"An error occurred: {e}")
         else:
-            env_recieve("org-unique")
+            console.log('No arguments passed, returning nothing!')
 
 
 #test commands can and will usually go here
