@@ -8,8 +8,8 @@ charset-normalizer==3.5.1
 click==8.3.3
 colorama==0.4.6
 docutils==0.23
+e==1.4.5
 fastapi==0.136.1
-id==1.6.1
 idna==3.20
 importlib_metadata==9.0.1
 iniconfig==2.3.0
@@ -22,6 +22,8 @@ mdurl==0.1.2
 more-itertools==11.1.0
 nh3==0.3.7
 packaging==26.2
+pillow==12.3.0
+platformdirs==4.12.4
 pluggy==1.6.0
 pydantic==2.13.5
 pydantic-settings==2.15.0
@@ -31,6 +33,7 @@ pyproject_hooks==1.2.0
 pytest==9.0.3
 python-dotenv==1.2.3
 pywin32-ctypes==0.2.3
+qrcode==8.2
 readme_renderer==46.0
 requests==2.34.2
 requests-toolbelt==1.0.0

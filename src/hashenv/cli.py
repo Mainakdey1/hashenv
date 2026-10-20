@@ -2,6 +2,8 @@ import typer
 import uuid
 from rich.spinner import Spinner
 from rich.console import Console
+from importlib.metadata import version, PackageNotFoundError
+
 
 from services.repository_processing_and_query_service import process_repository_service
 from helpers.get_repo_list import get_repo_list
@@ -42,8 +44,30 @@ def ping():
 
     if res:
         ping_backend_server()
-    
+    else:
+        console.print("[red]Not logged in, run `hashenv login or hashenv pair`")
 
+def version_callback(value: bool):
+    if value:
+        try:
+            current_version = version("hashenv")
+        except PackageNotFoundError:
+            current_version = "unknown"
+
+        print(f"Hashenv CLI version: {current_version}")
+        raise typer.Exit()
+
+@app.callback()
+def main(
+    version_flag: bool = typer.Option(
+        False,
+        "--version",
+        callback=version_callback,
+        is_eager=True,
+        help="Show the installed CLI version."
+    )
+):
+    pass
 @app.command(help="Display all your repositories.")
 def show_repository(all: bool = typer.Option(False, "--all"), r: bool = typer.Option(False, "--r")):
     if all:

@@ -42,7 +42,6 @@ def authenticated() -> bool:
     token = keyring.get_password(SERVICE, USERNAME)
 
     if token is None:
-        console.print("[red]Not logged in, run `hashenv login`")
         return False
     return True
 
