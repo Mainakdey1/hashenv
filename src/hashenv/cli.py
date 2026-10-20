@@ -1,16 +1,31 @@
 import typer
-
-from services.repository_processing_and_query_service import process_repository_service
-from helpers.get_repo_list import get_repo_list
-from services.authentication.auth import log_in, get_token, authenticated
-from helpers.env_recieve import env_recieve
-from helpers.ping_backend_server import ping_backend_server
-from helpers.get_env_from_backend import get_env_from_backend
+import uuid
 from rich.spinner import Spinner
 from rich.console import Console
 
+from services.repository_processing_and_query_service import process_repository_service
+from helpers.get_repo_list import get_repo_list
+from services.authentication.auth import log_in, get_token, authenticated, mobile_authenticated
+from helpers.env_recieve import env_recieve
+from helpers.ping_backend_server import ping_backend_server
+from helpers.get_env_from_backend import get_env_from_backend
+from services.authentication.qr_code import display_qr_code, get_device_id
+
+
 app = typer.Typer()
 console = Console()
+res = authenticated() or mobile_authenticated()
+
+
+@app.command(help="Login using QR Code")
+def pair():
+    device_token_id = get_device_id()
+
+    console.status("[bold green] Scan this QR code with your mobile app")
+    display_qr_code(device_token_id=device_token_id)
+
+    # will add a check if device code is registered in devicetoken id tables, if not then
+    # reject requests
 
 
 @app.command(help="Login with your token.")
@@ -24,7 +39,7 @@ def login():
 
 @app.command(help="Ping server health.")
 def ping():
-    res = authenticated()
+
     if res:
         ping_backend_server()
     
@@ -42,7 +57,6 @@ def show_repository(all: bool = typer.Option(False, "--all"), r: bool = typer.Op
 
 @app.command(help="Install env files for your repository.")
 def install(r: bool = typer.Option(False, "--r")):
-    res = authenticated()
     if res:
         if r:
             try:

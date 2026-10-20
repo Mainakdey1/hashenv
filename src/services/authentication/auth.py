@@ -4,6 +4,8 @@ import typer
 from core.config import settings
 from rich.console import Console
 
+from ..authentication.qr_code import get_device_id
+
 SERVICE = "hashenv"
 USERNAME = "default"
 
@@ -11,6 +13,7 @@ USERNAME = "default"
 console = Console()
 
 SERVER_URL = settings.SERVER_URL
+LCOAL_SERVER_URL = settings.LOCAL_SERVER_URL
 def log_in(token : int):   
     try: 
         response = requests.post(f"{SERVER_URL}/auth", json={"token": token})
@@ -42,6 +45,19 @@ def authenticated() -> bool:
         console.print("[red]Not logged in, run `hashenv login`")
         return False
     return True
+
+def mobile_authenticated() -> bool:
+    device_token_id = get_device_id()
+    try: 
+        response = requests.get(f"{LCOAL_SERVER_URL}/device/isregistered/{device_token_id}")
+        if response.status_code == 200:
+            return True
+        else:
+            console.print("[red]Authorization expired!")
+            return False
+    except requests.exceptions.RequestException as e:
+        print(f'Error connecting to server: {e}')
+    return
 
 def logout_redirect():
     token = keyring.get_password(SERVICE, USERNAME)
