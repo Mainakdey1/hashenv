@@ -13,7 +13,7 @@ USERNAME = "default"
 console = Console()
 
 SERVER_URL = settings.SERVER_URL
-LCOAL_SERVER_URL = settings.LOCAL_SERVER_URL
+LOCAL_SERVER_URL = settings.LOCAL_SERVER_URL
 def log_in(token : int):   
     try: 
         response = requests.post(f"{SERVER_URL}/auth", json={"token": token})
@@ -49,7 +49,7 @@ def authenticated() -> bool:
 def mobile_authenticated() -> bool:
     device_token_id = get_device_id()
     try: 
-        response = requests.get(f"{LCOAL_SERVER_URL}/device/isregistered/{device_token_id}")
+        response = requests.get(f"{SERVER_URL}/device/isregistered/{device_token_id}")
         if response.status_code == 200:
             return True
         else:
