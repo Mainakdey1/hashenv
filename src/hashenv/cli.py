@@ -16,7 +16,6 @@ from services.authentication.qr_code import display_qr_code, get_device_id
 
 app = typer.Typer()
 console = Console()
-res = authenticated() or mobile_authenticated()
 
 
 @app.command(help="Login using QR Code")
@@ -33,7 +32,7 @@ def pair():
 @app.command(help="Login with your token.")
 def login():
     token = str(input("Enter your API token: "))
-    res = log_in(token=token)
+    log_in(token=token)
     # console.print("[bold blue]Feature still in development. Coming soon!!")
     # with open(".env", "w") as f:
     #     f.write(token)
@@ -41,7 +40,7 @@ def login():
 
 @app.command(help="Ping server health.")
 def ping():
-
+    res = authenticated() or mobile_authenticated()
     if res:
         ping_backend_server()
     else:
@@ -81,6 +80,7 @@ def show_repository(all: bool = typer.Option(False, "--all"), r: bool = typer.Op
 
 @app.command(help="Install env files for your repository.")
 def install(r: bool = typer.Option(False, "--r")):
+    res = authenticated() or mobile_authenticated()
     if res:
         if r:
             try:
